@@ -1,0 +1,36 @@
+<%- include("partials/header.ejs") %>
+<body>
+    <img src="images/weather.jpg" alt="Different weather types" class="backgroundimg">
+
+    
+    <!-- <form action="/submit" method="post">
+     <div class="databox"></div>
+     <h3>Open w3</h3>
+     <p>
+        <label for="location">Location:</label>
+        <input type="text" id="location" name="user-location" >
+    </p>
+    </div>
+    </form> -->
+    
+    <form action="/submit" method="POST">
+    <div class="databox">
+        <h3> The date is:  <%= new Date().toLocaleDateString()%></h3>
+        <p>OpenWeather API</p>
+        <label for="result">Your location is:</label>
+        <br>
+        <h2><%= data %> </h2>
+        
+        <% const weatherData = JSON.parse(weather); %>
+            <% if (weatherData && weatherData.days && weatherData.days.length > 0) { %>
+                <% const temperature = weatherData.days[0].temp; %>
+                <h3>Temperature: <%= temperature %>°C</h3>
+            <% } else { %>
+                <p>No weather data available.</p>
+            <% } %>
+        
+    </div>
+    </form>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+<%- include("partials/footer.ejs") %>
